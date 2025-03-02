@@ -1,0 +1,166 @@
+/* BackButton.css */
+.back-button {
+    position: relative;
+    background-color: #1a2942;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin: 20px;
+    outline: none;
+    z-index: 10;
+  }
+  
+  .back-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Arrow styling */
+  .arrow-container {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .arrow-left {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    transform: rotate(-45deg);
+    transition: all 0.3s ease;
+  }
+  
+  .arrow-left:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    background-color: #fff;
+    left: -1px;
+    top: 3px;
+    transform-origin: left center;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Button hover effect */
+  .back-button.hovered {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #273c5a, #1a2942);
+  }
+  
+  .back-button.hovered .arrow-container {
+    transform: translateX(-3px);
+  }
+  
+  .back-button.hovered .arrow-left {
+    transform: rotate(-45deg) scale(1.2);
+  }
+  
+  .back-button.hovered .arrow-left:before {
+    opacity: 1;
+  }
+  
+  /* Button click effect */
+  .back-button.clicked {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: pulse 0.6s ease-out;
+  }
+  
+  .back-button.clicked .back-button-content {
+    animation: slide-out 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+  
+  /* Ripple effect */
+  .ripple-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    z-index: 1;
+  }
+  
+  .back-button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+  }
+  
+  .back-button.clicked:after {
+    animation: ripple 0.6s ease-out;
+  }
+  
+  /* Animations */
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(50);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(26, 41, 66, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(26, 41, 66, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(26, 41, 66, 0);
+    }
+  }
+  
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    20% {
+      transform: translateX(-10px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .back-button {
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+  }
